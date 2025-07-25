@@ -179,7 +179,7 @@ export default function PestControlLanding() {
 
     const whyText: Record<string, string> = {
       "Control de Insectos":
-        "Los insectos pueden transmitir enfermedades peligrosas y contaminar alimentos y superficies. Un control profesional previene infecciones y protege la salud de tu familia o negocio.",
+        "Los insectos pueden transmitir enfermedades peligrosas y contaminar alimentos y superficies. Un control profesional previene infecciones y protege la salud de tu familia o negocio, ¿Para qué arriesgar tu negocio por la queja de un cliente?, recuerda que el exito está son los clientes satisfechos y por ende necesitas un buen mantenimiento de control de plagas y que tu negocio se vea limpio y saludable.",
       "Fumigación Residencial":
         "La fumigación protege tu hogar y familia de plagas que pueden afectar la salud y la tranquilidad. Es clave para mantener ambientes seguros, especialmente si tienes niños, mascotas o personas vulnerables.",
       "Control de Roedores":
@@ -231,11 +231,13 @@ export default function PestControlLanding() {
     const diseases = diseaseList[service.title] || []
     return (
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/10 backdrop-blur-sm transition-all duration-300 animate-in fade-in"
-        style={{ animation: 'fadeIn 0.3s' }}
+        className="fixed inset-0 flex items-center justify-center transition-all duration-300 animate-in fade-in"
+        style={{ animation: 'fadeIn 0.3s', zIndex: 9999 }}
       >
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 9998 }} className="sm:bg-black/10 sm:backdrop-blur-sm"></div>
         <div
           className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative border border-red-100 animate-in slide-in-from-bottom duration-500"
+          style={{ zIndex: 10000, maxHeight: '90vh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
         >
           <button
             className="absolute top-3 right-3 text-gray-400 hover:text-red-600 transition-colors"
@@ -244,7 +246,7 @@ export default function PestControlLanding() {
           >
             <X className="h-6 w-6" />
           </button>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center" style={{ overflowY: 'auto', width: '100%', maxHeight: '75vh', paddingRight: '0.5rem' }}>
             <div className="mb-4">
               <service.icon className="h-12 w-12 text-red-600 drop-shadow-lg" />
             </div>
@@ -284,6 +286,11 @@ export default function PestControlLanding() {
 
   return (
     <div className="min-h-screen bg-white">
+      {!modalOpen && (
+        <div className="fixed inset-0 pointer-events-none z-40">
+          <div className="absolute inset-0 bg-black/10"></div>
+        </div>
+      )}
 
 
 
@@ -472,7 +479,6 @@ export default function PestControlLanding() {
                   <ellipse cx="20" cy="20" rx="10" ry="7" fill="#222" />
                   <ellipse cx="30" cy="20" rx="5" ry="4" fill="#444" />
                   <ellipse cx="20" cy="13" rx="7" ry="3" fill="#aee9f7" opacity="0.6" />
-        {/* Modal State */}
         <ServiceModal
           open={modalOpen}
           onClose={() => setModalOpen(false)}
