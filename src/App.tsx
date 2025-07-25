@@ -602,20 +602,7 @@ Ser reconocidos como la empresa líder en control integral de plagas en la regi�
                       </div>
                     </div>
                     </div>
-                    <div className="flex items-center space-x-4 mt-6">
-                    <div className="w-full">
-                      <iframe
-                        title="Ubicación Total Control 4"
-                        src="https://www.google.com/maps?q=11.9028350,-86.2604937&z=17&output=embed"
-                        width="100%"
-                        height="200"
-                        style={{ border: 0, borderRadius: "8px" }}
-                        allowFullScreen
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                      />
-                    </div>
-                </div>
+                   
               </div>
             </div>
 
