@@ -299,7 +299,7 @@ export default function PestControlLanding() {
           <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <img
-            src="src/assets/logo.svg"
+            src="/logo.svg"
             alt="Total Control 4 Logo"
             className="h-15 w-auto"
           />
@@ -630,7 +630,7 @@ export default function PestControlLanding() {
             <div className={`${isVisible.nosotros ? "animate-in slide-in-from-right duration-1000" : "opacity-0"}`}>
               <div className="relative">
                 <img
-                  src="src/assets/foto3.jpg"
+                  src="/foto3.jpg"
                   alt="Equipo profesional de control de plagas"
                   className="rounded-2xl shadow-2xl"
                 />
@@ -711,7 +711,7 @@ Ser reconocidos como la empresa l√≠der en control integral de plagas en la regi√
 
       <section className="py-20 bg-red-600 text-white relative overflow-hidden">
         <img
-          src="src/assets/foto1.jpg"
+          src="/foto1.jpg"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none"
@@ -837,7 +837,7 @@ Ser reconocidos como la empresa l√≠der en control integral de plagas en la regi√
             <div>
                 <div className="flex items-center space-x-2 mb-4">
                 <img
-                  src="src/assets/logoblanco.svg"
+                  src="/logoblanco.svg"
                   alt="Total Control 4 Logo"
                   className="h-15 w-auto"
                 />
