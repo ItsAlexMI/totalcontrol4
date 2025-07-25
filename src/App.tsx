@@ -130,6 +130,158 @@ export default function PestControlLanding() {
     },
   ]
 
+  const [modalOpen, setModalOpen] = useState(false)
+  const [modalService, setModalService] = useState<any>(null)
+
+  function ServiceModal({
+    open,
+    onClose,
+    service,
+  }: {
+    open: boolean
+    onClose: () => void
+    service: any
+  }) {
+    if (!open || !service) return null
+    const signals: Record<string, string[]> = {
+      "Control de Insectos": [
+        "Ves hormigas, cucarachas o moscas con frecuencia en tu cocina o baños.",
+        "Encuentras restos de insectos o huevecillos en rincones y muebles.",
+        "Notas malos olores o manchas en paredes y pisos."
+      ],
+      "Fumigación Residencial": [
+        "Has visto plagas en tu hogar o jardín.",
+        "Tienes mascotas y quieres protegerlas de pulgas y garrapatas.",
+        "Buscas prevención antes de una mudanza o temporada lluviosa."
+      ],
+      "Control de Roedores": [
+        "Escuchas ruidos en techos o paredes por la noche.",
+        "Encuentras excrementos pequeños o cables roídos.",
+        "Ves bolsas de comida rotas o huellas en la despensa."
+      ],
+      "Control de Termitas y Comején": [
+        "La madera de puertas, ventanas o muebles suena hueca o se desmorona.",
+        "Ves alas de insectos cerca de ventanas o lámparas.",
+        "Aparecen túneles de barro en paredes o pisos."
+      ],
+      "Eliminación de Chinches de Cama": [
+        "Tienes picaduras inexplicables al despertar.",
+        "Ves manchas oscuras en colchones o sábanas.",
+        "Encuentras pequeños insectos en costuras de colchones."
+      ],
+      "Control de Pulgas y Garrapatas": [
+        "Tus mascotas se rascan constantemente o tienen heridas en la piel.",
+        "Ves pequeños insectos saltando en alfombras o muebles.",
+        "Has tenido infestaciones previas y quieres prevenir."
+      ],
+    }
+    const tips = signals[service.title] || ["Consulta con nuestros expertos si tienes dudas o sospechas de plagas."]
+
+    const whyText: Record<string, string> = {
+      "Control de Insectos":
+        "Los insectos pueden transmitir enfermedades peligrosas y contaminar alimentos y superficies. Un control profesional previene infecciones y protege la salud de tu familia o negocio.",
+      "Fumigación Residencial":
+        "La fumigación protege tu hogar y familia de plagas que pueden afectar la salud y la tranquilidad. Es clave para mantener ambientes seguros, especialmente si tienes niños, mascotas o personas vulnerables.",
+      "Control de Roedores":
+        "Los roedores pueden dañar estructuras, cables y alimentos, además de ser portadores de enfermedades graves. El control oportuno evita riesgos sanitarios y pérdidas económicas.",
+      "Control de Termitas y Comején":
+        "Las termitas y el comején destruyen la madera y pueden comprometer la seguridad de tu vivienda o negocio. Detectar y tratar a tiempo previene daños graves y costosos.",
+      "Eliminación de Chinches de Cama":
+        "Las chinches de cama provocan picaduras, alergias y problemas de sueño. Su eliminación profesional es esencial para recuperar el bienestar y evitar la propagación.",
+      "Control de Pulgas y Garrapatas":
+        "Pulgas y garrapatas afectan la salud de tus mascotas y pueden transmitir enfermedades a humanos. El control especializado protege a toda la familia y previene reinfestaciones.",
+    }
+    const why = whyText[service.title] || "Este servicio es fundamental para mantener ambientes saludables y libres de plagas."
+
+    const diseaseList: Record<string, string[]> = {
+      "Control de Insectos": [
+        "Salmonelosis",
+        "Disentería",
+        "Gastroenteritis",
+        "Fiebre tifoidea"
+      ],
+      "Fumigación Residencial": [
+        "Leptospirosis",
+        "Dengue",
+        "Zika",
+        "Alergias respiratorias"
+      ],
+      "Control de Roedores": [
+        "Leptospirosis",
+        "Hantavirus",
+        "Salmonelosis",
+        "Fiebre por mordedura de rata"
+      ],
+      "Control de Termitas y Comején": [
+        "No transmiten enfermedades, pero generan ambientes insalubres por daño estructural"
+      ],
+      "Eliminación de Chinches de Cama": [
+        "Alergias",
+        "Irritaciones en la piel",
+        "Infecciones secundarias por rascado"
+      ],
+      "Control de Pulgas y Garrapatas": [
+        "Enfermedad de Lyme",
+        "Fiebre maculosa",
+        "Tifus",
+        "Bartonelosis",
+        "Dermatitis"
+      ],
+    }
+    const diseases = diseaseList[service.title] || []
+    return (
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/10 backdrop-blur-sm transition-all duration-300 animate-in fade-in"
+        style={{ animation: 'fadeIn 0.3s' }}
+      >
+        <div
+          className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative border border-red-100 animate-in slide-in-from-bottom duration-500"
+        >
+          <button
+            className="absolute top-3 right-3 text-gray-400 hover:text-red-600 transition-colors"
+            onClick={onClose}
+            aria-label="Cerrar"
+          >
+            <X className="h-6 w-6" />
+          </button>
+          <div className="flex flex-col items-center">
+            <div className="mb-4">
+              <service.icon className="h-12 w-12 text-red-600 drop-shadow-lg" />
+            </div>
+            <h3 className="text-2xl font-bold text-black mb-2 tracking-tight">{service.title}</h3>
+            <p className="text-gray-700 mb-4 text-center leading-relaxed">{service.description}</p>
+            <div className="w-full">
+              <h4 className="font-semibold text-red-600 mb-2 text-left">¿Por qué es importante?</h4>
+              <p className="text-gray-600 mb-2 text-left">{why}</p>
+              {diseases.length > 0 && (
+                <>
+                  <h5 className="font-semibold text-red-500 mb-1 text-left">Enfermedades asociadas:</h5>
+                  <ul className="list-disc list-inside text-gray-600 space-y-1 text-left mb-4">
+                    {diseases.map((disease, idx) => (
+                      <li key={idx}>{disease}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
+              <h4 className="font-semibold text-red-600 mb-2 text-left">¿Cuándo lo necesitas?</h4>
+              <ul className="list-disc list-inside text-gray-600 space-y-1 text-left">
+                {tips.map((tip, idx) => (
+                  <li key={idx}>{tip}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <style>{`
+          @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+          }
+        `}</style>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen bg-white">
 
@@ -320,12 +472,12 @@ export default function PestControlLanding() {
                   <ellipse cx="20" cy="20" rx="10" ry="7" fill="#222" />
                   <ellipse cx="30" cy="20" rx="5" ry="4" fill="#444" />
                   <ellipse cx="20" cy="13" rx="7" ry="3" fill="#aee9f7" opacity="0.6" />
-                  <ellipse cx="20" cy="27" rx="7" ry="3" fill="#aee9f7" opacity="0.6" />
-                </svg>
-              </div>
-             <div className="absolute fly-mosca6 top-48 w-8 h-8 z-10">
-                <svg viewBox="0 0 40 40" width="32" height="32">
-                  <ellipse cx="20" cy="20" rx="10" ry="7" fill="#222" />
+        {/* Modal State */}
+        <ServiceModal
+          open={modalOpen}
+          onClose={() => setModalOpen(false)}
+          service={modalService}
+        />
                   <ellipse cx="30" cy="20" rx="5" ry="4" fill="#444" />
                   <ellipse cx="20" cy="13" rx="7" ry="3" fill="#aee9f7" opacity="0.6" />
                   <ellipse cx="20" cy="27" rx="7" ry="3" fill="#aee9f7" opacity="0.6" />
@@ -365,6 +517,12 @@ export default function PestControlLanding() {
         </p>
           </div>
 
+          <ServiceModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        service={modalService}
+          />
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {services.map((service, index) => (
           <Card
@@ -390,16 +548,28 @@ export default function PestControlLanding() {
               </li>
             ))}
           </ul>
-          <Button
-            className="w-full mt-6 bg-red-600 hover:bg-red-700 text-white"
-            onClick={() => {
-              const text = `Hola, quiero solicitar el servicio de "${service.title}".`;
-              const url = `https://wa.me/50587777428?text=${encodeURIComponent(text)}`;
-              window.open(url, "_blank");
-            }}
-          >
-            Solicitar Servicio
-          </Button>
+          <div className="flex flex-col gap-2 mt-6">
+            <Button
+              className="w-full bg-red-600 hover:bg-red-700 text-white"
+              onClick={() => {
+            const text = `Hola, quiero solicitar el servicio de "${service.title}".`;
+            const url = `https://wa.me/50587777428?text=${encodeURIComponent(text)}`;
+            window.open(url, "_blank");
+              }}
+            >
+              Solicitar Servicio
+            </Button>
+            <Button
+              variant="outline"
+              className="w-full border-red-600 text-red-600 hover:bg-red-600 hover:text-white"
+              onClick={() => {
+            setModalService(service)
+            setModalOpen(true)
+              }}
+            >
+              ¿Por qué es importante?
+            </Button>
+          </div>
             </CardContent>
           </Card>
         ))}
@@ -407,6 +577,7 @@ export default function PestControlLanding() {
         </div>
       </section>
 
+     
       <section id="nosotros" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
