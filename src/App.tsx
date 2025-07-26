@@ -767,7 +767,7 @@ Ser reconocidos como la empresa l√≠der en control integral de plagas en la regi√
                   <Mail className="h-6 w-6 text-red-600" />
                   <div>
                     <div className="font-semibold text-black">Email</div>
-                    <div className="text-gray-600">-----</div>
+                    <div className="text-gray-600">ventas@controltotalnic.com</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
@@ -899,7 +899,7 @@ Ser reconocidos como la empresa l√≠der en control integral de plagas en la regi√
               <h3 className="text-lg font-semibold mb-4">Contacto</h3>
               <div className="space-y-2 text-gray-400">
                 <div>(505) 8777-7428</div>
-                <div>-----</div>
+                <div>ventas@controltotalnic.com</div>
                 <div>Del centro de salud 1 1/2 al norte. Reparto San Jorge, San Marcos, Carazo.
 </div>
               </div>
